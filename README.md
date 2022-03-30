@@ -1,2 +1,2 @@
-# cs338
+# Devin Lewis CS338
 A repository for all my submissions and assignments in CS 338
