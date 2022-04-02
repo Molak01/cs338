@@ -1,0 +1,19 @@
+Devin Lewis
+
+1. The command is "ipconfig", also to tell the difference (for my computer at least) it says Ethernet adapter and Wireless LAN adapter in seperate categories.
+
+2. For this commad, you should type "ping" and then follow it with the given hostname. I know this already because I've used it to play minecraft with friends at times.
+
+3. What I found was that for windows the command is "nslookup" followed by the given IP address. Source from https://www.techwalla.com/articles/server-ip-using-cmd-prompt
+
+4. To copy a file from a VM to your actual computer, you first type "copy" then the location/ file you want the file to be on, then you put the original path for said file at the end. So it'd look something like this, "copy file.txt \\target_machine\destination_path\destination_file.txt". Source from https://superuser.com/questions/197290/how-can-i-copy-a-file-from-my-machine-to-another-machine-from-command-line
+
+5.For locating whether there is a process listening or not you use the "netstat" command and then scroll down to where 80 is located, at least that's how I do it.
+
+6. I think it's also the "netstat" command? Every source I found trying to answer it only focuses on the port and not the actual host itself so this is my best guess.
+
+7. In order to save the link of a site you use the "wget" command with an added "-r" and the full address of the website. However this won't just save the link, it will also download the whole page for offline viewing. Source from https://www.lifewire.com/uses-of-command-wget-2201085
+
+8. For windows, you use the "Invoke-WebRequest" command followed by "-Uri" but on Mac/Linux you should use "curl" followed by "-I" Source from https://support.stackpath.com/hc/en-us/articles/360001368263-View-Response-Headers
+
+9. I actually believe that you would use the "curl" command again, but I couldn't find what the specific additional command to go with it was.
