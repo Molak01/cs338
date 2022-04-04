@@ -1,0 +1,63 @@
+Devin Lewis | CS 338
+
+
+"===== DAYTIME ====="
+
+1.
+	1  192.168.97.1  132.163.97.1  TCP  42614 -> 13 [SYN]
+	2  132.163.97.1  192.168.97.1  TCP  13 -> 42614 [SYN, ACK]
+	3  192.168.97.1  132.163.97.1  TCP  42614 -> 13 [ACK]
+	4  132.163.97.1  192.168.97.1  DAYTIME  DAYTIME Response
+
+2.
+  The port number that the client uses is "13", and the reason that the client needs a port is because it's needed to identify the specific process of communication with a given server.
+
+3.
+	4  132.163.97.1  192.168.97.1  DAYTIME  DAYTIME Response
+
+4.
+	I don't know what you mean by full content, but when ignoring the 	Ethernet, IP, and TCP tags all that was left was this:
+
+	Type: Response
+	Daytime: \n59673 22-04-04 20:32:56 50 0 0 899.9 UTC(NIST) * \n
+	
+	The first piece of content is stating that this is the response that 	the client requested for, and the second line "Daytime" contains the 
+	date, time, and I think the data type as well.
+
+5. 
+  [SYN] is the request sent to another computer/server requesting for a connection to be made for possible data transfer.
+
+6.
+  [ACK] means that the request has been acknowledged by the other server, and it will share it's port and other details to begin further communication.
+
+7.
+  [FIN] means that one of the servers is ending the communication with the other, either because the transaction is complete or some other reason.
+
+8.
+  The nc client initiated the closure, I can tell because the source IP address for that line is the IP address for my Kali server.
+
+
+
+"===== HTTP ====="
+
+1.
+  By the time I hit stop, there were about 32 TCP connections made.
+
+2. 
+  Your homepage was requested on frame 7 of my communication with the server.
+	
+	7  192.168.97.1  45.79.89.123  HTTP  GET /index.html HTTP/1.1
+
+  For starters, the source of the request is from my IP address, this is also the first line from the interaction where GET is used followed by "index.html". So it's safe to assume it was in this frame.
+
+3.
+  The image of your head was requested on frame 11.
+	
+	11  192.168.97.1  45.79.89.123  HTTP  GET /jeff_square_head.jpg HTTP/1.1
+
+
+
+"===== QUESTIONS ====="
+
+What is TSval, TSecr, and WS?
+
