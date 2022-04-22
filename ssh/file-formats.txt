@@ -49,6 +49,11 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+JtOLq6I0ec9bxE8sY0J5GgaKZvJ2TuQwSbcoN/qR
 -----END RSA PUBLIC KEY-----
 
 
+
+
+
+
+
 			*Private Key*
 
 According to what I read in the appendix for this,
@@ -107,15 +112,54 @@ DER encoding: 02 81 C1
 
 According to  the RFC, the only two integer values I should be on the lookout for are modulus and publicExponent. Which makes sense, since its the public key alot less would go into creating it since its not a major deal if its leaked.
 
+Using the command I found on The Digital Cat blog, I was able to decode the public key and put it into hexadecimal.
+I used this: cat id_rsa_homework.pub | cut -d " " -f2 | \
+  base64 -d | hexdump -ve '/1 "%02x "' -e '2/8 "\n"'
+
+This is the hex code:
+00 00 00 07 73 73 68 2d 72 73 61 00 00 00 03 01
+00 01 00 00 01 81 00 be 26 d3 8b ab a2 34 79 cf
+5b c4 4f 2c 63 42 79 1a 06 8a 66 f2 76 4e e4 30
+49 b7 28 37 fa 91 52 df 42 84 9c 2f 81 d0 82 bb
+fc 87 c7 52 83 ad 5b b3 d6 6d eb ce 34 6f 19 82
+43 a6 8a ce 7f 09 60 65 3e 0b fb 94 cb fc ab c7
+e1 f1 b9 80 42 07 72 e3 3a 12 cd 43 35 c1 b6 02
+15 be 77 29 50 ca 53 48 1c 97 80 3d 54 91 5e 8c
+40 8e b5 5d aa fc 04 6e e4 53 71 d5 20 11 c3 05
+ca 5b dd 31 ed b0 a8 a8 e6 a9 d4 4f 5e 61 f9 74
+78 90 84 9f 6b 73 05 0c d3 e6 ff de 8e a8 84 36
+43 35 8a a6 52 ff 48 37 c3 67 e1 a6 78 f8 c7 65
+2e f6 b7 0c 79 5f 39 ac da c5 91 42 45 8c ea 38
+24 ce 99 fb f2 69 92 3e d6 4d 5b e8 9d 66 fb 67
+1f 25 57 8f 57 12 f4 f7 31 d4 4d 91 7e 20 1f 67
+68 21 10 7f d7 d8 db 99 f4 c6 d3 da 86 19 70 8e
+57 e3 38 8c 7f 14 c5 a3 d6 ac bd 96 9a 18 7d e5
+11 f4 74 31 f9 3f b2 0b e1 98 1e 58 25 f6 6f 90
+3f ca 91 b5 a9 fd e8 47 a5 20 6b 02 42 80 55 c1
+e1 e4 d1 22 a0 d0 81 ff c4 32 c8 e7 11 bb 07 00
+e3 47 12 71 1b 9e 59 40 72 32 0a 72 b4 cb 25 db
+0e f2 7d 98 5a f4 00 93 4d 35 a7 39 20 da 24 ad
+6b 47 c3 b9 56 5b d3 7f 0f 7a cc 7c c9 9e 77 15
+62 29 b6 06 b0 f4 b3 8a ad 09 1d 17 f5 1c 75 59
+8d 39 ae 28 3c 89 5c bb a8 71 f4 c3 f0 27 e7 56
+23 34 a7 94 d8 32 09
+
+>The first integer I found was the modulus (n) according to RFC:
+Value: ???
+Location/Offset: 22
+DER encoding: 00 be 26 d3 8b ... 09
+
+>Then the last integer was the publicExponent (e):
+Value: 65537
+Location/Offset: 15
+DER Encoding: 01 00 01
 
 
+			*Sanity Check*
 
+e*d mod lambda(n) = 1?
 
-
-
-
-
-
+I'm honestly not sure how I'd check this when my d and n are so large I can't even get the whole number.
 
 
 
