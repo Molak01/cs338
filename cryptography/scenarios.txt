@@ -1,0 +1,54 @@
+Devin Lewis | CS 338
+
+
+
+1. Alice wants to send Bob a long message, and she doesn't want Eve to be able to read it. Assume for this scenario that PITM is impossible.
+
+	One of the easiest ways for Alice to make sure it's not Eve reading her message is to use the DIffie-Hellman key exchange in order to agree on a shared secret key K with Bob. Using their each of their private keys in order to compute K (Alice and Bob using both S_A and S_B), and since eve has no access to private keys they should be fine.
+
+
+
+2. Alice wants to send Bob a long message. She doesn't want Mal to be able to modify the message without Bob detecting the change.
+
+	Alice would need to use a cryptographic hash function to send it to Bob. Using H(M) to calculate the message's digest D, Alice can then send the message along with the digest to Bob. Then bob can make the same calculation using the same hash function to see if the M alice sent works for H(M) == D. If it doesn't, the message was modified.
+
+
+
+3. Alice wants to send Bob a long message (in this case, it's a signed contract between AliceCom and BobCom), she doesn't want Eve to be able to read it, and she wants Bob to have confidence that it was Alice who sent the message. Assume for this scenario that PITM is impossible.
+
+	Alice would need to use a cryptographic hash function to send it to Bob. Using H(M) Alice can create a digital signature and send that along with the hashed message, then Bob can compute whether E(P_A, Sig) == D, D being the digest for H(M). If it's not equal to it then the certificate is not from Alice.
+
+
+
+4. Bob sues Alice but Alice claims that the C he recieved isn't the right one, here are her possible explanations:
+
+	- It's possible that a PITM situation happened while exchanging certificates and someone else had infiltrated between their communication. This is honestly highly likely, but only if they weren't using secure means to trade C.
+	
+	- Bob calculated the D wrong and believed that the certificate was false.
+	This is highly unlikely since little error comes from a computer when computing algorithms unless user input is in play, it's still nonetheless possible.
+
+	- Alice calculated Sig incorrectly on her end.
+	While this is a bit more plausible than Bob computing it wrong after recieving the data from Alice, it's still not likely the case since the computations would also be done in part by Alice's computer.
+
+
+
+5. Show the formula CA would use to compute Sig_CA.
+
+	D = H(M)
+	Sig_CA = E(S_CA, D)
+	Then to confirm it, D = E(P_CA, Sig_CA)
+
+
+
+6. What could Alice and Bob do to convince Alice that Bob has the S_B that goes with the P_B in Cert_B?
+	
+	What Alice and Bob could do is at the beginning of the transaction Alice sends K but calculated using her secret key (S_A) then Bob sends Cert_B but this time he sends their shared key back to Alice and calculates it using his own private key (S_B). Then Alice can send Bob a challenge to compute a random number using E(P_B, R) and if Bob can send back that random number Bob can prove its him.
+
+
+
+7. Two ways that Mal can convince Alice that they are Bob:
+
+	- Since Mal knows the P_CA, they could pose as the real certificate authority that ALice would send the message too. Then when Mal recieves that message they can contact Bob with Alice's message and then use Bob's responses to convice alice that they are Bob.
+
+	- Instead of being at the head of the interaction with Alice and posing as the CA to her, Mal could alternatively communicate to an CA and have  her own certifcate created and say that she's Bob but with different keys.
+
