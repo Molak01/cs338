@@ -1,1 +1,46 @@
 Devin Lewis | CS 338
+
+
+
+Part 1
+Total time: 15m39.687s
+Number of hashes computed: 750,991,065
+Passwords cracked: 2805 (All of them)
+Time per hash computed: .0000012 seconds
+Time per password cracked: .33 seconds
+Passwords cracked per number of hashes computed: 1 password per 267,733 hashes
+
+Part 2
+Total time: [user time from a "time" command]
+Number of hashes computed: [count of the # of hashes computed] 
+Passwords cracked: [number cracked]
+Time per hash computed: [seconds per hash]
+Time per password cracked: [seconds per password]
+Passwords cracked per number of hashes computed: [passwords per hash]
+
+Part 3
+Total time: [user time from a "time" command]
+Number of hashes computed: [count of the # of hashes computed] 
+Passwords cracked: [number cracked]
+Time per hash computed: [seconds per hash]
+Time per password cracked: [seconds per password]
+Passwords cracked per number of hashes computed: [passwords per hash]
+
+
+Analysis:
+- Did your time per hash computed change between phases? By what factor? Why?
+
+
+- Did your time per password crack change between phases? By what factor? Why?
+
+
+- Suppose you wanted to precompute all the hashes for each possible password
+so you could just look up the password in a table indexed by the hash. How much
+memory would be required for each phase?
+  To precompute all the hashes for each possible password you would need enough memory to hold every single possible
+  combination of two words from the words list, and then memory to hold the hashes for each of those combinations. That would require not just alot of memory, but also   would take alot of time for a computer to compute.
+  
+- Give 3-4 reasons we should store password hashes and not the passwords themselves.
+1. This way those with access to the stored hashes wouldn't be capable of knowing a person's password without knowing the hashing process
+2. Every stored hash is nearly guranteed to be unique, while passwords created by just the users can easily repeat if they're simple
+3. Hacker would have to spend time figuring out the hash functions for passwords, creating more time for them to get caught and security to fix the breach
