@@ -16,7 +16,7 @@ for line in database:
 
 
 #answers = open('cracked1.txt', 'a')
-
+counter = 0
 for user in userauthentication:
     marker = user
     x = 0
@@ -27,9 +27,10 @@ for user in userauthentication:
             phase3 = phase2.digest()
             phase4 = binascii.hexlify(phase3)
             phase5 = phase4.decode('utf-8')
+            counter = counter + 1
             if phase5 == userauthentication[user]:
                 #answers.write(marker + ":" + item)
                 print(marker + ":" + item)
                 x = 1
-
+print(counter)
 #answers.close()
